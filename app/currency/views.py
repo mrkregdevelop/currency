@@ -1,17 +1,34 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 from currency.models import Rate
 
 
 def list_rates(request):
-    qs = Rate.objects.all()
-    result = []
+    '''
+    MTVU
+    V - views
+    U - urls
+    M - model
+    T - template
+    '''
+    rates = Rate.objects.all()
 
-    for rate in qs:
-        result.append(f'id: {rate.id}, buy: {rate.buy}, sell: {rate.sell}, currency: {rate.currency}, '
-                      f'source: {rate.source}, created: {rate.created} <br>')
+    context = {
+        'rates': rates
+    }
 
-    return HttpResponse(str(result))
+    return render(request, 'rates_list.html', context)
+
+
+def test_template(request):
+    name = request.GET.get('name')
+
+    context = {
+        'username': name
+    }
+
+    return render(request, 'test_template.html', context)
 
 
 def status_code(request):
