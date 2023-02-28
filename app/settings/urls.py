@@ -1,22 +1,14 @@
 from django.contrib import admin
-from django.urls import path
-
-from currency.views import (
-    list_rates, status_code,
-    test_template, rates_create,
-    request_methods, rates_update,
-    rates_delete, rates_details
-)
+from django.urls import path, include
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('rate/list/', list_rates),
-    path('rate/create/', rates_create),
-    path('rate/details/<int:pk>/', rates_details),
-    path('rate/update/<int:pk>/', rates_update),
-    path('rate/delete/<int:pk>/', rates_delete),
-    path('status2/', status_code),
-    path('template/', test_template),
-    path('rm/', request_methods)
+
+    path('__debug__/', include('debug_toolbar.urls')),
+
+    path('', TemplateView.as_view(template_name='index.html')),
+
+    path('currency/', include('currency.urls'))
 ]
