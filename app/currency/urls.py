@@ -5,7 +5,7 @@ from currency.views import (
     RateCreateView,
     RateDetailView,
     RateUpdateView,
-    RateDeleteView
+    RateDeleteView, ContactUsCreateView
 )
 
 app_name = 'currency'
@@ -17,4 +17,6 @@ urlpatterns = [
     path('rate/details/<int:pk>/', RateDetailView.as_view(), name='rate-details'),
     path('rate/update/<int:pk>/', RateUpdateView.as_view(), name='rate-update'),
     path('rate/delete/<int:pk>/', RateDeleteView.as_view(), name='rate-delete'),
+
+    path('contact-us/create/', ContactUsCreateView.as_view(), name='contact-us-create')
 ]

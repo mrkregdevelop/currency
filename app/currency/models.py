@@ -19,3 +19,29 @@ class Rate(models.Model):
 
 class Source(models.Model):
     name = models.CharField(max_length=64)
+
+
+class ContactUs(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=128)
+    email = models.EmailField()
+    subject = models.CharField(max_length=256)
+    message = models.TextField()
+
+
+"""
+SMTP - Simple mail transfer protocol
+
+User form
+name: Taras
+email: taras@example.com
+subject: Test
+body: Test body
+
+Send email to support
+
+recipient: support@example.com
+subject: User ContactUs
+
+body: Request from: Taras. Reply to email: taras@example.com. Subject: Test, Body: Test body
+"""

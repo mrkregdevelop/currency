@@ -17,9 +17,4 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=64)),
             ],
         ),
-        migrations.AddField(
-            model_name='rate',
-            name='currency_new',
-            field=models.PositiveSmallIntegerField(choices=[(2, 'Dollar'), (1, 'Euro')]),
-        ),
     ]
