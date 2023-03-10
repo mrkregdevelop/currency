@@ -1,3 +1,5 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
@@ -68,3 +70,22 @@ class ContactUsCreateView(CreateView):
         redirect = super().form_valid(form)
         self._send_mail()
         return redirect
+
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    template_name = 'registration/profile.html'
+    success_url = reverse_lazy('index')
+    # model = get_user_model()  # User
+    queryset = get_user_model().objects.all()
+    fields = (
+        'first_name',
+        'last_name'
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     queryset = queryset.filter(id=self.request.user.id)
+    #     return queryset

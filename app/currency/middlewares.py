@@ -7,7 +7,6 @@ class RequestResponseTimeMiddleware:
 
     def __call__(self, request):
         start = time()
-
         response = self.get_response(request)
 
         end = time()
