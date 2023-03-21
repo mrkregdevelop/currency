@@ -11,6 +11,7 @@
         Buy: {{ rate.buy }}
         Sell: {{ rate.sell }}
         Currency: {{ rate.get_currency_display }}
+        Source: {{ rate.source }}
         <a href="{% url 'currency:rate-update' rate.id %}">Update</a>
         <a href="{% url 'currency:rate-delete' rate.id %}">Delete</a>
         <a href="{% url 'currency:rate-details' rate.id %}">Details</a>

@@ -11,14 +11,25 @@ class Rate(models.Model):
     )  # if field has choices - get_{field_name}_display(), get_currency_display()
     buy = models.DecimalField(max_digits=6, decimal_places=2)
     sell = models.DecimalField(max_digits=6, decimal_places=2)
-    source = models.CharField(max_length=25)
+    # source = models.CharField(max_length=25)
+    source = models.ForeignKey('currency.Source', on_delete=models.CASCADE, related_name='rates')  # related_name
 
     def __str__(self):
         return f'Currency: {self.get_currency_display()}, Buy: {self.buy}'
 
 
 class Source(models.Model):
+    """
+    OneToOne - X
+    OneToMany - Y
+    ManyToMany - X
+
+    Проблема N + 1
+    """
     name = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.name
 
 
 class ContactUs(models.Model):
