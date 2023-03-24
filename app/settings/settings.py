@@ -38,7 +38,7 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
 ]
 
 EXTERNAL_APPS = [
@@ -49,7 +49,7 @@ EXTERNAL_APPS = [
 ]
 INTERNAL_APPS = [
     'currency',
-    'account'
+    'account',
 ]
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS
 
@@ -134,6 +134,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR.parent / 'static_content' / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -163,3 +167,12 @@ if DEBUG:
 
 HOST = 'localhost:8000'
 HTTP_SCHEMA = 'http'
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY = ''
+# AWS_SECRET_ACCESS_KEY = ''
+# AWS_STORAGE_BUCKET_NAME = 'hillel-sheketa'
+# AWS_QUERYSTRING_AUTH = False
+# AWS_S3_REGION_NAME = 'eu-central-1'
+# MEDIA_URL = 'https://hillel-sheketa.s3.eu-central-1.amazonaws.com/media/'
+# AWS_DEFULT_ACL = 'public-read'
