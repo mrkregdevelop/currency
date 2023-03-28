@@ -55,14 +55,18 @@ class ContactUsCreateView(CreateView):
             Subject: {self.object.subject}, 
             Body: {self.object.message}
         '''
-
-        from django.core.mail import send_mail
-        send_mail(
-            subject,
-            message,
-            recipient,
-            [recipient],
-            fail_silently=False,
+        from currency.tasks import send_mail
+        # send_mail.delay(subject, message)
+        # send_mail.apply_async(args=[subject, message])
+        '''
+        0 - 8.59 | 9.00 - 19.00 | 19.01 23.59
+           9.00  |    send      | 9.00 next day
+        '''
+        from datetime import datetime, timedelta
+        send_mail.apply_async(
+            kwargs={'subject': subject, 'message': message},
+            # countdown=20
+            # eta=datetime(2023, 3, 28, 20, 49, 0)
         )
 
     def form_valid(self, form):

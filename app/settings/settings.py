@@ -168,6 +168,12 @@ if DEBUG:
 HOST = 'localhost:8000'
 HTTP_SCHEMA = 'http'
 
+# CELERY
+CELERY_BROKER_URL = 'amqp://localhost'
+'''
+amqp, localhost, 5672, guest, guest
+'''
+
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # AWS_ACCESS_KEY = ''
 # AWS_SECRET_ACCESS_KEY = ''
