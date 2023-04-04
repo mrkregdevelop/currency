@@ -6,6 +6,7 @@ ipython
 django-admin-rangefilter
 django-import-export
 requests
+django-filter
 
 #flake8
 flake8
