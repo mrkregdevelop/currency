@@ -48,6 +48,7 @@ EXTERNAL_APPS = [
     'rangefilter',
     'import_export',
     'django_filters',
+    'rest_framework',
 ]
 INTERNAL_APPS = [
     'currency',
