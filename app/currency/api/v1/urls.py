@@ -1,7 +1,6 @@
-from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from currency.api.views import RateViewSet
+from currency.api.v1.views import RateViewSet
 
 # from currency.api.views import RateApiView, RateDetailApiView
 

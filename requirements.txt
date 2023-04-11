@@ -8,6 +8,8 @@ django-admin-rangefilter
 django-import-export
 requests
 django-filter
+djangorestframework-simplejwt
+drf-yasg
 
 #flake8
 flake8

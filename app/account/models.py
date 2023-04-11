@@ -2,8 +2,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.templatetags.static import static
 
-from common.mixins import TestMixin
-
 
 def avatar_path(instance, filename):
     return f"avatars/{instance.id}/{filename}"
@@ -15,7 +13,6 @@ class User(AbstractUser):
         default=None,
         null=True,
         blank=True,
-        upload_to=TestMixin
     )
     phone = models.CharField(
         max_length=64,

@@ -1,12 +1,19 @@
-from rest_framework import generics, viewsets
+from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework_xml.renderers import XMLRenderer
 from rest_framework_yaml.renderers import YAMLRenderer
 
-from currency.api.serializers import RateSerializer
+from django_filters import rest_framework as filters
+from rest_framework import filters as rest_framework_filters
+
+from currency.api.v1.serializers import RateSerializer
+from currency.filters import RateFilter
 from currency.models import Rate
+from currency.paginators import RatesPagination
+from currency.throttlers import AnonCurrencyThrottle
 
 
 # class RateApiView(generics.ListCreateAPIView):
@@ -23,6 +30,15 @@ class RateViewSet(viewsets.ModelViewSet):
     queryset = Rate.objects.all()
     serializer_class = RateSerializer
     renderer_classes = (JSONRenderer, XMLRenderer, YAMLRenderer)
+    pagination_class = RatesPagination
+    permission_classes = (AllowAny,)
+    filter_backends = (
+        filters.DjangoFilterBackend,
+        rest_framework_filters.OrderingFilter,
+    )
+    filterset_class = RateFilter
+    ordering_fields = ('id', 'created', 'buy', 'sale')
+    throttle_classes = (AnonCurrencyThrottle,)
 
     @action(detail=True, methods=('POST',))
     def buy(self, request, *args, **kwargs):
@@ -30,3 +46,7 @@ class RateViewSet(viewsets.ModelViewSet):
         print(rate)  # send buy request
         sz = self.get_serializer(instance=rate)
         return Response(sz.data)
+
+
+class SourceViewSet:
+    throttle_classes = (AnonCurrencyThrottle,)
