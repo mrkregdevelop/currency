@@ -55,7 +55,6 @@ EXTERNAL_APPS = [
 INTERNAL_APPS = [
     'currency',
     'account',
-    'common'
 ]
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + INTERNAL_APPS
 
@@ -196,7 +195,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_THROTTLE_RATES': {
         'currency': '2/min',
-    }
+    },
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 
 SIMPLE_JWT = {
