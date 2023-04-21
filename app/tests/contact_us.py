@@ -55,6 +55,6 @@ def test_post_valid_data(client, mailoutbox, settings):
     assert response.status_code == 302
     assert response['location'] == '/'
     assert ContactUs.objects.count() == initial_count + 1
-    # assert len(mailoutbox) == 1
-    # assert mailoutbox[0].from_email == settings.DEFAULT_FROM_EMAIL
+    assert len(mailoutbox) == 1
+    assert mailoutbox[0].from_email == settings.DEFAULT_FROM_EMAIL
 

@@ -50,7 +50,7 @@ def parse_privatbank():
             .order_by('-created') \
             .first()
 
-        if last_rate.buy != buy or last_rate.sale != sale:
+        if last_rate is None or last_rate.buy != buy or last_rate.sale != sale:
             Rate.objects.create(
                 buy=buy,
                 sale=sale,
@@ -62,11 +62,8 @@ def parse_privatbank():
 @shared_task(autoretry_for=(ConnectionError,),
              retry_kwargs={'max_retries': 5})
 def send_mail(subject, message):
-    raise ConnectionError
     recipient = settings.DEFAULT_FROM_EMAIL
     from django.core.mail import send_mail
-    from time import sleep
-    sleep(10)
     send_mail(
         subject,
         message,
