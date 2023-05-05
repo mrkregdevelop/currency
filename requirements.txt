@@ -10,6 +10,7 @@ requests
 django-filter
 djangorestframework-simplejwt
 drf-yasg
+gunicorn
 
 #flake8
 flake8
