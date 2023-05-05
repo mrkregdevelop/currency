@@ -11,6 +11,7 @@ django-filter
 djangorestframework-simplejwt
 drf-yasg
 gunicorn
+psycopg2-binary
 
 #flake8
 flake8

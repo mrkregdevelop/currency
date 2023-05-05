@@ -139,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'app/static']
 STATIC_ROOT = BASE_DIR.parent / 'static_content' / 'static'
 
 MEDIA_URL = 'media/'
@@ -233,11 +233,14 @@ CACHES = {
     }
 }
 
+
+# AWS_S3_REGION_NAME = 'fra1'
+# AWS_S3_ENDPOINT_URL = ''
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# AWS_ACCESS_KEY = ''
+# AWS_ACCESS_KEY_ID = ''
 # AWS_SECRET_ACCESS_KEY = ''
-# AWS_STORAGE_BUCKET_NAME = 'hillel-sheketa'
-# AWS_QUERYSTRING_AUTH = False
-# AWS_S3_REGION_NAME = 'eu-central-1'
-# MEDIA_URL = 'https://hillel-sheketa.s3.eu-central-1.amazonaws.com/media/'
+# AWS_STORAGE_BUCKET_NAME = 'static'
+# MEDIA_URL = 'media/'
 # AWS_DEFULT_ACL = 'public-read'
+# STATIC_URL = 'static/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
