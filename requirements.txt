@@ -10,8 +10,14 @@ requests
 django-filter
 djangorestframework-simplejwt
 drf-yasg
+djangorestframework-yaml
+djangorestframework-xml
+
+#services
 gunicorn
 psycopg2-binary
+pymemcache
+
 
 #flake8
 flake8
