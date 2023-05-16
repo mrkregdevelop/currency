@@ -150,8 +150,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'app/static']
-STATIC_ROOT = BASE_DIR.parent / 'static_content' / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATIC_ROOT = BASE_DIR.parent / 'static_content' /
+STATIC_ROOT = '/tmp/static'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR.parent / 'static_content' / 'media'
@@ -198,8 +199,8 @@ amqp, localhost, 5672, guest, guest
 '''
 CELERY_BEAT_SCHEDULE = {
     'debug': {
-        'task': 'currency.tasks.slow',
-        'schedule': crontab(minute='*/15')
+        'task': 'currency.tasks.parse_privatbank',
+        'schedule': crontab(minute='*/1')
     }
 }
 
@@ -246,7 +247,7 @@ SIMPLE_JWT = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
-        "LOCATION": "127.0.0.1:11211",
+        "LOCATION": f"{env.str('CACHE_DEFAULT_HOST', '127.0.0.1')}:{env.str('CACHE_DEFAULT_PORT', '127.0.0.1')}",
     }
 }
 
