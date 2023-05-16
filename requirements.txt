@@ -12,6 +12,7 @@ djangorestframework-simplejwt
 drf-yasg
 djangorestframework-yaml
 djangorestframework-xml
+django-environ
 
 #services
 gunicorn
