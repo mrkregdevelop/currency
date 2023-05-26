@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: backend
+    ports:
+      - "8000:8000"
+    image: local
+    build: .
+    stdin_open: true
+    tty: true
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15.2-alpine
+    container_name: postgres
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+
+volumes:
+  db_data: {}
